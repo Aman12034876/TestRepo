@@ -1,0 +1,16 @@
+<html>
+<body>
+  <button onclick="thisIsOnload()">Try it</button>
+
+  <script type="text/javascript" src="https://test.msg91.com/hello-new/assets/widget/chat-widget.js"> </script>
+  <script type="text/javascript">
+    var helloConfig = {
+      widgetToken: "4532e",
+  };
+  function thisIsOnload(){
+  initChatWidget(helloConfig, 500);
+  window.chatWidget.open()
+  }
+  </script>
+</body>
+</html>
