@@ -6,14 +6,17 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import type {Node} from 'react';
 import {
+  Modal,
+  Pressable,
   SafeAreaView,
   ScrollView,
   StatusBar,
   StyleSheet,
   Text,
+  TouchableOpacity,
   useColorScheme,
   View,
 } from 'react-native';
@@ -26,6 +29,7 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import { WebView } from 'react-native-webview';
+import Screen2 from './src/Screen2';
 
 
 /* $FlowFixMe[missing-local-annot] The type annotation(s) required by Flow's
@@ -58,6 +62,10 @@ const Section = ({children, title}): Node => {
 
 const App: () => Node = () => {
   const isDarkMode = useColorScheme() === 'dark';
+  const [left, setModalVisible] = useState(0);
+
+
+  
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
@@ -130,78 +138,116 @@ const App: () => Node = () => {
 
   const PolicyHTML = require('./index.html');
 
+return(
+  <View style={{flex: 1, backgroundColor: 'pink'}}>
 
-  return (
-    <WebView
-    // style={{height: 200, width: 200, backgroundColor: 'yellow', alignSelf: 'center'}}   
-      // source={{html: webHtml}}
-      source={PolicyHTML}
-      // source={{uri: 'https://reactnative.dev/'}}
-      // originWhitelist={['*']}
-      // javaScriptEnabledAndroid={true}
-      javaScriptEnabled
-      // injectedJavaScriptBeforeContentLoaded={`document.querySelector('html').innerHTML = verificationScript;`}
-      injectedJavaScript={`
-        (function () {
+<View style={[styles.container, {left}]}>
+          <Screen2 />
+        </View>
+      
+
+<View>
+  <TouchableOpacity style={{backgroundColor:'red',padding:30}}>
+    <Text>ksdhfjsdbf</Text>
+  </TouchableOpacity>
+  <TouchableOpacity>
+    <Text>ksdhfjsdbf</Text>
+  </TouchableOpacity>
+  <TouchableOpacity>
+    <Text>ksdhfjsdbf</Text>
+  </TouchableOpacity>
+</View>
+  <TouchableOpacity
+  style={{backgroundColor: 'grey', height: 70, width: 70, borderRadius: 100, alignItems: 'center', justifyContent: 'center', position: 'absolute', bottom: 20, right: 20}}
+  onPress={()=> {
+    setModalVisible(left == -1000 ? 0 : -1000)
+  }}
+  >
+  <Text>X</Text>
+    </TouchableOpacity>
+  </View>
+)
+
+  // return (
+  //   <WebView
+  //   // style={{height: 200, width: 200, backgroundColor: 'yellow', alignSelf: 'center'}}   
+  //     // source={{html: webHtml}}
+  //     source={PolicyHTML}
+  //     // source={{uri: 'https://reactnative.dev/'}}
+  //     // originWhitelist={['*']}
+  //     // javaScriptEnabledAndroid={true}
+  //     javaScriptEnabled
+  //     // injectedJavaScriptBeforeContentLoaded={`document.querySelector('html').innerHTML = verificationScript;`}
+  //     injectedJavaScript={`
+  //       (function () {
         
-        var jQueryScript = document.createElement('script');  
-                  jQueryScript.setAttribute('src','https://control.msg91.com/app/assets/otp-provider/otp-provider.js');
-       document.head.appendChild(jQueryScript);
+  //       var jQueryScript = document.createElement('script');  
+  //                 jQueryScript.setAttribute('src','https://control.msg91.com/app/assets/otp-provider/otp-provider.js');
+  //      document.head.appendChild(jQueryScript);
        
-         var jQueryKScript = document.createElement('script');  
-                  jQueryKScript.setAttribute('src','https://test.msg91.com/hello-new/assets/widget/chat-widget.js');
-       document.head.appendChild(jQueryKScript);
+  //        var jQueryKScript = document.createElement('script');  
+  //                 jQueryKScript.setAttribute('src','https://test.msg91.com/hello-new/assets/widget/chat-widget.js');
+  //      document.head.appendChild(jQueryKScript);
        
-         var configuration = {
-        widgetId: "326a63733354393830313330",
-        tokenAuth: "205968TmXguUAwoD633af103P1",
-        success: (data) => {
-        sendDataToReactNativeApp(data);
-        },
-        failure: (error) => {
-        sendDataToReactNativeApp(error);
-        }
-        };
+  //        var configuration = {
+  //       widgetId: "326a63733354393830313330",
+  //       tokenAuth: "205968TmXguUAwoD633af103P1",
+  //       success: (data) => {
+  //       sendDataToReactNativeApp(data);
+  //       },
+  //       failure: (error) => {
+  //       sendDataToReactNativeApp(error);
+  //       }
+  //       };
         
-        var helloConfig = {
-            widgetToken: "4532e",
-        };
-        setTimeout(
-                function initOTPWidget() {
-        initSendOTP(configuration);
-        initChatWidget(helloConfig, 0);
-        setTimeout(
-          function initOTPWidget() { window.chatWidget.open()}, 2000)
-        }, 500);
+  //       var helloConfig = {
+  //           widgetToken: "4532e",
+  //       };
+  //       setTimeout(
+  //               function initOTPWidget() {
+  //       initSendOTP(configuration);
+  //       initChatWidget(helloConfig, 0);
+  //       setTimeout(
+  //         function initOTPWidget() { window.chatWidget.open()}, 2000)
+  //       }, 500);
             
         
-        }());`}
-      // injectedJavaScript
-      userAgent="Mozilla/5.0 (Linux; Android 8.0.0; Pixel 2 XL Build/OPD1.170816.004) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3714.0 Mobile Safari/537.36"
-      onMessage={(event) => {}}
-      ref={() => {}}
+  //       }());`}
+  //     // injectedJavaScript
+  //     userAgent="Mozilla/5.0 (Linux; Android 8.0.0; Pixel 2 XL Build/OPD1.170816.004) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3714.0 Mobile Safari/537.36"
+  //     onMessage={(event) => {}}
+  //     ref={() => {}}
   
-      // setSupportMultipleWindows={true}
-    />
+  //     // setSupportMultipleWindows={true}
+  //   />
 
-        // <WebView source={{ html: `<html>
-        // <body onload="thisIsOnload()">
-        //   <script type="text/javascript" src="https://test.msg91.com/hello-new/assets/widget/chat-widget.js"> </script>
-        //   <script type="text/javascript">
-        //     var helloConfig = {
-        //       widgetToken: "4532e",
-        //   };
-        //   function thisIsOnload(){
-        //   initChatWidget(helloConfig, 500);
-        //   }
-        //   </script>
-        // </body>
-        // </html>` }} />
+  //       // <WebView source={{ html: `<html>
+  //       // <body onload="thisIsOnload()">
+  //       //   <script type="text/javascript" src="https://test.msg91.com/hello-new/assets/widget/chat-widget.js"> </script>
+  //       //   <script type="text/javascript">
+  //       //     var helloConfig = {
+  //       //       widgetToken: "4532e",
+  //       //   };
+  //       //   function thisIsOnload(){
+  //       //   initChatWidget(helloConfig, 500);
+  //       //   }
+  //       //   </script>
+  //       // </body>
+  //       // </html>` }} />
 
-  );
+  // );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: 'yellow',
+    // flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 700,
+    position: 'absolute',
+    zIndex:3
+},
   sectionContainer: {
     marginTop: 32,
     paddingHorizontal: 24,
