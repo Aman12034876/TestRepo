@@ -30,6 +30,7 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 import { WebView } from 'react-native-webview';
 import Screen2 from './src/Screen2';
+import Screen1 from './src/Screen1';
 
 
 /* $FlowFixMe[missing-local-annot] The type annotation(s) required by Flow's
@@ -141,8 +142,8 @@ const App: () => Node = () => {
 return(
   <View style={{flex: 1, backgroundColor: 'pink'}}>
 
-<View style={[styles.container, {left}]}>
-          <Screen2 />
+<View style={[styles.container, {left, flex: 1}]}>
+          <Screen1 />
         </View>
       
 
@@ -244,9 +245,9 @@ const styles = StyleSheet.create({
     // flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    height: 700,
-    position: 'absolute',
-    zIndex:3
+    // height: 800,
+    // position: 'absolute',
+    // zIndex:3
 },
   sectionContainer: {
     marginTop: 32,

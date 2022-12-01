@@ -107,6 +107,10 @@
    const jsCode = "<iFrame src='https://reactnative.dev/' />";
  
    const PolicyHTML = require('../index.html');
+
+   function onMessage(data) {
+    console.log('Data from Widget------', data.nativeEvent.data)
+  }
  
  
    return (
@@ -141,6 +145,10 @@
          sendDataToReactNativeApp(error);
          }
          };
+
+         function sendData(data) {
+          window.ReactNativeWebView.postMessage(JSON.stringify(data));
+          };
          
          var helloConfig = {
              widgetToken: "4532e",
@@ -149,6 +157,7 @@
                  function initOTPWidget() {
          initSendOTP(configuration);
          initChatWidget(helloConfig, 0);
+         sendData('hello')
          setTimeout(
            function initOTPWidget() { window.chatWidget.open()}, 2000)
          }, 500);
@@ -157,7 +166,7 @@
          }());`}
        // injectedJavaScript
        userAgent="Mozilla/5.0 (Linux; Android 8.0.0; Pixel 2 XL Build/OPD1.170816.004) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3714.0 Mobile Safari/537.36"
-       onMessage={(event) => {}}
+       onMessage={onMessage}
        ref={() => {}}
    
        // setSupportMultipleWindows={true}
